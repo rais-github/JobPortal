@@ -23,7 +23,7 @@ const Navbar = () => {
     <header className="max-w-screen-2xl container mx-auto xl:px-24 px-4">
       <nav className="flex justify-between items-center py-6">
         <a href="/" className="flex items-center gap-2 text-2xl font-mono">
-          <WorkHistoryRoundedIcon className="text-red-600" fontSize="large" />
+          <WorkHistoryRoundedIcon className="text-red" fontSize="large" />
           <span>JobPortal</span>
         </a>
         {/* Toggle menu button for medium screens and below */}
@@ -50,7 +50,7 @@ const Navbar = () => {
           ))}
         </ul>
         {/* Login sign-up for large screens */}
-        <div className="text-primary text-base font-medium space-x-5 hidden lg:block">
+        <div className="text-primary text-base font-medium space-x-5 hidden md:block">
           <Link to="/login">
             <Button variant="text" color="error">
               Login
