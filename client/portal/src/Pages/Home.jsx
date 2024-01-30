@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../components/Banner";
 import Card from "../components/Card";
 import Sidebar from "../Sidebar/Sidebar";
+import Newsletter from "../components/Newsletter";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Job from "./Job";
@@ -10,8 +11,8 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage,setCurrentPage] = useState(null);
-  const itemsPerPage=6;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,26 +42,26 @@ const Home = () => {
   // Filter radio
   const radioChangeHandler = (event) => setSelectedCategory(event.target.value);
   // Filter group button
-  const buttonChangeHandler = (event) =>    setSelectedCategory(event.target.value);
+  const buttonChangeHandler = (event) =>
+    setSelectedCategory(event.target.value);
 
   // Pagination
-   function calculateRange(){
-    const startIndex=(currentPage-1)*itemsPerPage;
-    const endIndex=startIndex+itemsPerPage;
-    return {startIndex,endIndex};
+  function calculatePageRange() {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return { startIndex, endIndex };
   }
 
-  const nextPage=()=>{
-    if(currentPage <Math.ceil(filteredItems.length/itemsPerPage)){
-      setCurrentPage(currentPage+1);
+  const nextPage = () => {
+    if (currentPage < Math.ceil(filteredItems.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
     }
-  }
-  const prevPage=()=>{
-    if(currentPage >1){
-      setCurrentPage(currentPage-1);
+  };
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-  }
-
+  };
 
   // Filtering function
   const filterdData = (query, jobs, selected) => {
@@ -82,10 +83,11 @@ const Home = () => {
           job.salaryType.toLowerCase() === selected.toLowerCase() ||
           job.experienceLevel.toLowerCase() === selected.toLowerCase() ||
           job.employmentType.toLowerCase() === selected.toLowerCase() ||
-          job.postingDate.toLowerCase() === selected.toLowerCase()
+          job.postingDate >= selected
       );
     }
-
+    const { startIndex, endIndex } = calculatePageRange();
+    filteredJobs = filteredJobs.slice(startIndex, endIndex);
     return filteredJobs.map((data, idx) => <Card key={idx} data={data} />);
   };
   // Usage example:
@@ -102,18 +104,50 @@ const Home = () => {
             buttonChangeHandler={buttonChangeHandler}
           ></Sidebar>
         </div>
-        <div className="col-span-2 bg-white rounded-sm p-4">
-        {isLoading ? <p>loading...</p> : (
-  <>
-    <h2 className="text-2xl font-mono pl-[15rem]">
-      {filteredDataResult.length} Jobs
-    </h2>
-    <Job filteredDataResult={filteredDataResult} />
-  </>
-)}
 
+        <div className="col-span-2 bg-white rounded-sm p-4">
+          {isLoading ? (
+            <p>loading...</p>
+          ) : (
+            <>
+              <h2 className="text-2xl font-mono pl-[15rem]">
+                {filteredDataResult.length} Jobs
+              </h2>
+              <Job filteredDataResult={filteredDataResult} />
+            </>
+          )}
+
+          {filteredDataResult.length > 0 ? (
+            <div className="flex justify-center mt-4 space-x-8">
+              <button
+                onClick={prevPage}
+                disabled={currentPage === 1}
+                className="hover:underline"
+              >
+                Previous
+              </button>
+              <span className="mx-4">
+                {currentPage} of{" "}
+                {Math.ceil(filteredItems.length / itemsPerPage)} Pages
+              </span>
+              <button
+                onClick={nextPage}
+                disabled={
+                  currentPage === Math.ceil(filteredItems.length / itemsPerPage)
+                }
+                className="hover:underline"
+              >
+                Next
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-        <div className="bg-white p-4 rounded">right</div>
+
+        <div className="bg-white p-4 rounded">
+          <Newsletter/>
+        </div>
       </div>
     </div>
   );
