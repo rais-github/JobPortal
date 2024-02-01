@@ -133,8 +133,8 @@ const JobPost = () => {
   const [formData, setFormData] = useState({
     jobTitle: "",
     companyName: "",
-    minSalary: "",
-    maxSalary: "",
+    minSalary: 0,
+    maxSalary: 0,
     salaryType: "hourly",
     jobLocation: "",
     postingDate: "",
@@ -155,13 +155,31 @@ const JobPost = () => {
     setFormData({ ...formData, requiredSkills: selectedSkills });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/post-job", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ job: formData }),
+      }); 
+  
+      if (response.ok) {
+        console.log("Job posted successfully");
+      } else {
+        console.error("Failed to post job");
+      }
+    } catch (error) {
+      console.error("Error posting job", error);
+    }
+  
     setFormData({
       jobTitle: "",
       companyName: "",
-      minSalary: "",
-      maxSalary: "",
+      minSalary: 0,
+      maxSalary: 0,
       salaryType: "hourly",
       jobLocation: "",
       postingDate: "",
@@ -344,6 +362,7 @@ const JobPost = () => {
               id="requiredSkills"
               value={formData.requiredSkills}
               onChange={handleSkillsChange}
+              name="requiredSkills"
               
             />
           </div>
