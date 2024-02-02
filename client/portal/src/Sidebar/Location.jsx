@@ -9,11 +9,11 @@ export default function Location({ radioChangeHandler }) {
     <div>
       <h3 className="text-lg font-medium mb-2">Locations</h3>
       <FormControl>
-        <RadioGroup col onChange={radioChangeHandler}>
+        <RadioGroup onChange={radioChangeHandler} style={{ flexDirection: 'column' }}>
           <FormControlLabel value="All" control={<Radio />} label="All" />
           <FormControlLabel
             value="Seattle"
-            control={<Radio  />}
+            control={<Radio />}
             label="Seattle"
           />
           <FormControlLabel

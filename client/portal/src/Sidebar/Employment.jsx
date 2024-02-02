@@ -2,16 +2,17 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-function Employment({radioChangeHandler}) {
+
+function Employment({ radioChangeHandler }) {
   return (
     <div>
-        <h3 className="text-lg font-medium mb-3">Type of Employment</h3>
-        <FormControl>
-        <RadioGroup col onChange={radioChangeHandler}>
+      <h3 className="text-lg font-medium mb-3">Type of Employment</h3>
+      <FormControl>
+        <RadioGroup onChange={radioChangeHandler} style={{ flexDirection: 'column' }}>
           <FormControlLabel value="" control={<Radio />} label="Any" />
           <FormControlLabel
             value={"Full-time"}
-            control={<Radio  />}
+            control={<Radio />}
             label="Full-time"
           />
           <FormControlLabel
@@ -27,7 +28,7 @@ function Employment({radioChangeHandler}) {
         </RadioGroup>
       </FormControl>
     </div>
-  )
+  );
 }
 
 export default Employment;

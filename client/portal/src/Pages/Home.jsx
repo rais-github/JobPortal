@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("http://localhost:8080/all-jobs")
+      .get("http://localhost:8080/jobs/all-jobs")
       .then((response) => {
         // console.log(response.data);
         setJobs(response.data);

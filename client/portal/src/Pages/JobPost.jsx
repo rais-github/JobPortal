@@ -135,13 +135,13 @@ const JobPost = () => {
     companyName: "",
     minSalary: 0,
     maxSalary: 0,
-    salaryType: "hourly",
+    salaryType: "Hourly",
     jobLocation: "",
     postingDate: "",
-    experienceLevel: "No experience",
+    experienceLevel: "No Experience",
     requiredSkills: [],
     companyLogo: "",
-    employmentType: "Full time",
+    employmentType: "Full-time",
     jobDescription: "",
     postedByEmail: "",
   });
@@ -152,13 +152,14 @@ const JobPost = () => {
   };
 
   const handleSkillsChange = (selectedSkills) => {
-    setFormData({ ...formData, requiredSkills: selectedSkills });
+
+    setFormData({ ...formData, requiredSkills: selectedSkills});
   };
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/post-job", {
+      const response = await fetch("http://localhost:8080/jobs/post-job", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -174,22 +175,7 @@ const JobPost = () => {
     } catch (error) {
       console.error("Error posting job", error);
     }
-  
-    setFormData({
-      jobTitle: "",
-      companyName: "",
-      minSalary: 0,
-      maxSalary: 0,
-      salaryType: "hourly",
-      jobLocation: "",
-      postingDate: "",
-      experienceLevel: "No experience",
-      requiredSkills: [],
-      companyLogo: "",
-      employmentType: "Full time",
-      jobDescription: "",
-      postedByEmail: "",
-    });
+
     console.log(formData);
   };
 
@@ -287,9 +273,9 @@ const JobPost = () => {
               value={formData.salaryType}
               onChange={handleChange}
             >
-              <option value="hourly">Hourly</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
+              <option value="Hourly">Hourly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
             </select>
           </div>
 
@@ -344,7 +330,7 @@ const JobPost = () => {
               value={formData.experienceLevel}
               onChange={handleChange}
             >
-              <option value="No experience">No experience</option>
+              <option value="No Experience">No experience</option>
               <option value="Internship">Internship</option>
               <option value="Work remotely">Work remotely</option>
             </select>
@@ -400,8 +386,8 @@ const JobPost = () => {
               value={formData.employmentType}
               onChange={handleChange}
             >
-              <option value="Full time">Full time</option>
-              <option value="Part time">Part time</option>
+              <option value="Full-time">Full time</option>
+              <option value="Part-time">Part time</option>
               <option value="Temporary">Temporary</option>
             </select>
           </div>

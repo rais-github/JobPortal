@@ -9,7 +9,7 @@ const jobSchema = Joi.object({
   jobLocation: Joi.string().required(),
   postingDate: Joi.date().iso().required().error(new Error('Please fill the date of this posting')), // Custom error message
   experienceLevel: Joi.string().valid('No Experience', 'Internship', 'Work remotely').required(),
-  requiredSkills: Joi.array().items(Joi.string()).required(),
+  requiredSkills: Joi.array().required(),
   companyLogo: Joi.string().required(),
   employmentType: Joi.string().valid('Full-time', 'Part-time', 'Temporary').required(),
   jobDescription: Joi.string().max(500).required(),

@@ -9,17 +9,17 @@ const Salary = ({ radioChangeHandler, buttonChangeHandler }) => {
   return (
     <div>
       <h3 className="text-lg font-medium mb-3">Salary</h3>
-      <ButtonGroup className='mb-4' color='error' variant="outlined" aria-label="outlined primary button group">
+      <ButtonGroup size='small' className='mb-4' color='error' variant="outlined" aria-label="outlined primary button group">
         <Button onClick={buttonChangeHandler} value="" >Hourly</Button>
         <Button onClick={buttonChangeHandler} value="Monthly" >Monthly</Button>
         <Button onClick={buttonChangeHandler} value="Yearly" >Yearly</Button>
       </ButtonGroup>
       <FormControl>
-        <RadioGroup col onChange={radioChangeHandler}>
+        <RadioGroup onChange={radioChangeHandler} style={{ flexDirection: 'column' }}>
           <FormControlLabel value="" control={<Radio />} label="Any" />
           <FormControlLabel
             value={30}
-            control={<Radio  />}
+            control={<Radio />}
             label="<30000k"
           />
           <FormControlLabel

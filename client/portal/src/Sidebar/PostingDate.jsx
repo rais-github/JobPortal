@@ -15,7 +15,7 @@ function PostingDate({ radioChangeHandler }) {
     <div>
       <h3 className="text-lg font-medium mb-3">Date of posting</h3>
       <FormControl>
-        <RadioGroup col onChange={radioChangeHandler}>
+        <RadioGroup onChange={radioChangeHandler} style={{ flexDirection: 'column' }}>
           <FormControlLabel value="" control={<Radio />} label="All time" />
           <FormControlLabel
             value={formatDateToString(prev24Hrs)}

@@ -24,7 +24,7 @@ const jobSchema = new Schema({
     enum: ["No Experience", "Internship", "Work remotely"],
     required: true,
   },
-  requiredSkills: { type: [String], required: true },
+  requiredSkills: { type:[], required: true },
   companyLogo: { type: String, required: true },
   employmentType: {
     type: String,
