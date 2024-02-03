@@ -4,6 +4,7 @@ import { FiMapPin, FiClock, FiDollarSign, FiCalendar } from 'react-icons/fi';
 
 function Card({ data }) {
   const {
+    _id,
     jobTitle,
     companyName,
     minSalary,
@@ -21,7 +22,7 @@ function Card({ data }) {
 
   return (
     <section className='card' style={{ marginBottom: '20px', borderBottom: '1px solid #ccc', paddingBottom: '20px' }}>
-      <Link to="/" className='flex gap-4 flex-col sm:flex-row items-start'>
+      <Link to={`/${_id}`} className='flex gap-4 flex-col sm:flex-row items-start'>
         {/* Apply border-radius to make the logos rounded */}
         <img src={companyLogo} alt="" style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
         <div>

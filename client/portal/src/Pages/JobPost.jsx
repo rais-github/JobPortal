@@ -168,14 +168,29 @@ const JobPost = () => {
       }); 
   
       if (response.ok) {
-        console.log("Job posted successfully");
+        alert("Job Posted Succesfully")
       } else {
         console.error("Failed to post job");
       }
     } catch (error) {
       console.error("Error posting job", error);
     }
-
+    
+    setFormData({
+      jobTitle: "",
+      companyName: "",
+      minSalary: 0,
+      maxSalary: 0,
+      salaryType: "Hourly",
+      jobLocation: "",
+      postingDate: "",
+      experienceLevel: "No Experience",
+      requiredSkills: [],
+      companyLogo: "",
+      employmentType: "Full-time",
+      jobDescription: "",
+      postedByEmail: "",
+    });
     console.log(formData);
   };
 

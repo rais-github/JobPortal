@@ -4,12 +4,22 @@ import Button from "@mui/material/Button";
 import { NavLink, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Logout from "../components/Logout"
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const simulateLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
   };
 
   const navItems = [
@@ -49,18 +59,28 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        {/* Login sign-up for large screens */}
+        {/* Login, SignUp, and Logout for large screens */}
         <div className="text-primary text-base font-medium space-x-5 hidden md:block">
-          <Link to="/login">
-            <Button variant="text" color="error">
-              Login
-            </Button>
-          </Link>
-          <Link to="/sign-up">
-            <Button variant="contained" color="error">
-              SignUp
-            </Button>
-          </Link>
+          {isLoggedIn ? (
+            <button onClick={handleLogout}>
+              <Button variant="text" color="error">
+                Logout
+              </Button>
+            </button>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="text" color="error">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/sign-up">
+                <Button variant="contained" color="error">
+                  SignUp
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </nav>
       {/* Mobile menu content */}
@@ -81,17 +101,27 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               ))}
-              {/* Login and Signup links in mobile menu */}
-              <li className="text-base text-white first:text-white py-1">
-                <Link to="/login" className="active-link">
-                  Login
-                </Link>
-              </li>
-              <li className="text-base text-white first:text-white py-1">
-                <Link to="/sign-up" className="active-link">
-                  Signup
-                </Link>
-              </li>
+              {/* Login, Signup, and Logout links in mobile menu */}
+              {isLoggedIn ? (
+                <li className="text-base text-white first:text-white py-1">
+                  <button onClick={handleLogout}>
+                    <span>Logout</span>
+                  </button>
+                </li>
+              ) : (
+                <>
+                  <li className="text-base text-white first:text-white py-1">
+                    <Link to="/login" className="active-link" onClick={simulateLogin}>
+                      Login
+                    </Link>
+                  </li>
+                  <li className="text-base text-white first:text-white py-1">
+                    <Link to="/sign-up" className="active-link" onClick={simulateLogin}>
+                      Signup
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

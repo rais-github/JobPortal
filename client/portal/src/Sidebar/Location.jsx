@@ -12,21 +12,21 @@ export default function Location({ radioChangeHandler }) {
         <RadioGroup onChange={radioChangeHandler} style={{ flexDirection: 'column' }}>
           <FormControlLabel value="All" control={<Radio />} label="All" />
           <FormControlLabel
-            value="Seattle"
+            value="Pune"
             control={<Radio />}
-            label="Seattle"
+            label="Pune"
           />
           <FormControlLabel
-            value="San Francisco"
+            value="Hyderabad"
             control={<Radio />}
-            label="San Francisco"
+            label="Hyderabad"
           />
-          <FormControlLabel value="Boston" control={<Radio />} label="Boston" />
-          <FormControlLabel value="London" control={<Radio />} label="London" />
+          <FormControlLabel value="Bengaluru" control={<Radio />} label="Bengaluru" />
+          <FormControlLabel value="Lucknow" control={<Radio />} label="Lucknow" />
           <FormControlLabel
-            value="Brussels"
+            value="Delhi"
             control={<Radio />}
-            label="Brussels"
+            label="Delhi"
           />
         </RadioGroup>
       </FormControl>
